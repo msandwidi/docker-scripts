@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "This scripts installS docker and docker-compose on ubuntu"
+echo "This scripts installs docker and docker-compose on ubuntu"
 echo ""
 echo "The installation will:"
 echo "1 - update your OS"
