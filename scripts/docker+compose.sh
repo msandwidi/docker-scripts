@@ -28,6 +28,7 @@ install() {
     #updated host first
     echo "updating host..."
     echo "this may take a while"
+    
     (sudo apt-get update && sudo apt-get upgrade -y) > ~/$LOG_FILE 2>&1
     
     echo ""
@@ -40,6 +41,7 @@ install() {
         #install docker-ce
         echo "installing docker-ce..."
         echo "this may take a while"
+
         (curl -fsSL https://get.docker.com | sh) >> ~/$LOG_FILE 2>&1
         
         sleep 3s
@@ -57,7 +59,9 @@ install() {
         echo ""
         
         echo "adding current user to docker group..."
+
         (sudo usermod -aG docker "${USER}") >> ~/$LOG_FILE 2>&1
+
         echo "you may need re-login for the change to take effect"
     fi
     
@@ -71,6 +75,7 @@ install() {
         #install docker-compose
         echo "installing docker-compose..."
         echo "this may take a while"
+
         (sudo apt install docker-compose -y) >> ~/$LOG_FILE 2>&1
         
         sleep 2s

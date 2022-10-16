@@ -87,6 +87,7 @@ install() {
             echo "skipping nginx-proxy network creation..."
         else
             echo "Creating nginx proxy manager network: nginx-proxy..."
+            
             sudo docker network create nginx-proxy
             
             sleep 2s
