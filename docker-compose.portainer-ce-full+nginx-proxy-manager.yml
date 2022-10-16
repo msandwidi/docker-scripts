@@ -1,1 +1,33 @@
+version: "3.7"
 
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    privileged: true
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ./portainer_data:/data
+    ports:
+      - 9000:9000
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: always
+    ports:
+      - 80:80
+      - 81:81
+      - 443:443
+    volumes:
+      - ./nginx-proxy-manager/data:/data
+      - ./letsencrypt:/etc/letsencrypt
+
+volumes:
+  portainer_data:
+  nginx-proxy-manager:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
