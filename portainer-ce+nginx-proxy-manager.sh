@@ -24,10 +24,10 @@ install() {
     LOG_FILE="portainer-ce+npm-install.log"
     
     #Stack template url
-    STACK_TEMPLATE_URL="https://raw.githubusercontent.com/msandwidi/docker-scripts/main/docker-compose.portainer-ce-full%2Bnginx-proxy-manager.yml"
+    STACK_TEMPLATE_URL="https://raw.githubusercontent.com/msandwidi/docker-scripts/main/docker-compose.portainer-ce%2Bnginx-proxy-manager.yml"
     
     #custom name for docker compose file
-    DOCKER_COMPOSE_FILE_NAME="portainer-ce-full+nginx-proxy-manager.yml"
+    DOCKER_COMPOSE_FILE_NAME="portainer-ce+nginx-proxy-manager.yml"
     
     #updated host first
     echo "updating host..."
