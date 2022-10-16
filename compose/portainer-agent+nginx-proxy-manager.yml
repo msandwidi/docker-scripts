@@ -1,9 +1,9 @@
 version: "3.7"
 
 services:
-  portainer_agent:
+  portainer-agent:
     image: portainer/agent
-    container_name: portainer_agent
+    container_name: portainer-agent
     restart: always
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock 
@@ -11,9 +11,9 @@ services:
     ports:
       - 9001:9001
 
-  nginx_proxy_manager:
+  nginx-proxy-manager:
     image: jc21/nginx-proxy-manager:latest
-    container_name: nginx_proxy_manager
+    container_name: nginx-proxy-manager
     restart: always
     ports:
       - 80:80
