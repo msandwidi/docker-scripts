@@ -24,7 +24,7 @@ install() {
     LOG_FILE="portainer-ce+npm-install.log"
     
     #Stack template url
-    STACK_TEMPLATE_URL="https://raw.githubusercontent.com/msandwidi/docker-scripts/main/docker-compose.portainer-agent%2Bnginx-proxy-manager.yml"
+    STACK_TEMPLATE_URL="https://raw.githubusercontent.com/msandwidi/docker-scripts/main/compose/portainer-agent%2Bnginx-proxy-manager.yml"
     
     #custom name for docker compose file
     DOCKER_COMPOSE_FILE_NAME="portainer-agent+nginx-proxy-manager.yml"
