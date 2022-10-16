@@ -10,7 +10,7 @@ services:
         - /var/run/docker.sock:/var/run/docker.sock
         - ./portainer_data:/data
     ports:
-      - 9443:9443
+      - 9000:9000
   nginx-proxy-manager:
     image: jc21/nginx-proxy-manager:latest
     container_name: nginx-proxy-manager
