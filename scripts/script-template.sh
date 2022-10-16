@@ -1,4 +1,5 @@
 #!/bin/bash
+echo ""
 
 echo "This scripts installs ..." #TODO tell what the script will do
 echo ""
@@ -31,9 +32,9 @@ install() {
     echo "NOTE: ..." #TODO add important notes
     echo "NOTE: ..." #TODO add important notes
 
-
     echo ""
     echo "Log file: ~/$LOG_FILE"
+    echo ""
 }
 
 read -rp "Would you like to continue the installations? (yes/no): " PURSUE_INSTALLATIONS
@@ -42,10 +43,12 @@ case $PURSUE_INSTALLATIONS in
 yes) install ;;
 no)
     echo "exiting..."
+    echo ""
     exit
     ;;
 *)
     echo "invalid response"
     exit 1
+    echo ""
     ;;
 esac

@@ -1,4 +1,5 @@
 #!/bin/bash
+echo ""
 
 #this script is for root user
 if [[ "$(whoami)" != root ]]; then
@@ -7,19 +8,20 @@ if [[ "$(whoami)" != root ]]; then
     exit 1
 fi
 
-echo "This scripts installs portainer and nginx-proxy-manager on ubuntu"
+echo "This scripts installs is an assistant for ubuntu initial setup"
 echo ""
 echo "The installation will:"
 echo "1 - update your OS"
 echo "2 - create a non-root user"
 echo "3 - enable OpenSSH for ufw firewall"
+echo "4 - enable HTTPS for ufw firewall"
 
 echo ""
 
 #installer
 install() {
     echo ""
-    echo "OK. proceeding with installations..."
+    echo "OK. proceeding with setup..."
 
     sleep 2s
     echo ""
@@ -41,8 +43,10 @@ install() {
     echo "'$NEW_USER_USERNAME' got it..."
 
     #check if user exists
-    if id -u "$1" >~/$LOG_FILE 2>&1; then
-        echo "$NEW_USER_USERNAME already user exists"
+    if id -u "$NEW_USER_USERNAME" >~/$LOG_FILE 2>&1; then
+        echo "user $NEW_USER_USERNAME already exists"
+        echo "exitting..."
+        echo ""
         exit 1
     else
         echo "Great! This username is available"
@@ -57,17 +61,14 @@ install() {
 
     sleep 1s
     echo ""
-
-    sleep 2s
-    echo ""
     echo "adding $NEW_USER_USERNAME to sudo group..."
 
     usermod -aG sudo $NEW_USER_USERNAME
 
-    sleep 2s
+    sleep 1s
     echo ""
 
-    echo "enabling OpenSSH, HTTPS..."
+    echo "enabling OpenSSH and HTTPS..."
     (ufw allow OpenSSH) >~/$LOG_FILE 2>&1
     (ufw allow HTTPS) >~/$LOG_FILE 2>&1
 
@@ -79,15 +80,15 @@ install() {
 
     rsync --archive --chown=$NEW_USER_USERNAME:$NEW_USER_USERNAME ~/.ssh /home/$NEW_USER_USERNAME
 
-    sleep 2s
+    sleep 1s
     echo ""
 
     echo "All Done."
 
-    sleep 2s
+    sleep 1s
     echo ""
 
-    echo "NOTE: You may want to try login with the new non-root user: '$NEW_USER_USERNAME'"
+    echo "NOTE: You may want to login with the new non-root user '$NEW_USER_USERNAME' to make sure the access is properly configured"
 
     sleep 1s
     echo ""
@@ -95,18 +96,21 @@ install() {
 
     echo ""
     echo "Log file: ~/$LOG_FILE"
+    echo ""
 }
 
-read -rp "Would you like to continue the installations? (yes/no): " PURSUE_INSTALLATIONS
+read -rp "Would you like to continue the setup? (yes/no): " PURSUE_SETUP
 
-case $PURSUE_INSTALLATIONS in
+case $PURSUE_SETUP in
 yes) install ;;
 no)
     echo "exiting..."
+    echo ""
     exit
     ;;
 *)
     echo "invalid response"
+    echo ""
     exit 1
     ;;
 esac
