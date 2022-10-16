@@ -87,7 +87,7 @@ install() {
             echo "skipping nginx-proxy network creation..."
         else
             echo "Creating nginx proxy manager network: nginx-proxy..."
-            
+
             sudo docker network create nginx-proxy
             
             sleep 2s
@@ -116,10 +116,11 @@ install() {
         sleep 5s
         echo ""
         
-        echo "the container is booting"
+        echo "the containers are booting..."
         
     fi
     
+    sleep 2s
     echo ""
     echo "All Done."
     
@@ -127,7 +128,7 @@ install() {
     echo "docker-compose file name: $DOCKER_COMPOSE_FILE_NAME"
     
     echo ""
-    echo "use: 'docker-compose -f $DOCKER_COMPOSE_FILE_NAME ps' to check your stack "
+    echo "NOTE: use 'docker-compose -f $DOCKER_COMPOSE_FILE_NAME ps' to check your stack "
     
     echo ""
     echo "Log file: ~/$LOG_FILE"

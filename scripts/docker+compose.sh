@@ -89,7 +89,7 @@ install() {
     echo "All Done."
     
     echo ""
-    echo "NOTE: You may want to reboot your OS if any of the packages was added"
+    echo "NOTE: You may need to reboot your OS if any of the packages was added"
     
     echo ""
     echo "Log file: ~/$LOG_FILE"
