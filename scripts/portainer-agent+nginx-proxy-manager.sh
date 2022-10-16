@@ -134,7 +134,7 @@ install() {
     echo "Log file: ~/$LOG_FILE"
 }
 
-read -rp "Would like to continue the installations? (yes/no): " PURSUE_INSTALLATIONS
+read -rp "Would you like to continue the installations? (yes/no): " PURSUE_INSTALLATIONS
 
 case $PURSUE_INSTALLATIONS in
     yes ) install;;

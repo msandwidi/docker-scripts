@@ -1,11 +1,18 @@
 #!/bin/bash
 
+#this script is for root user
+if [[ "$(whoami)" != root ]]; then
+    echo "Please run this script as root"
+    echo "exiting..."
+    exit 1
+fi
+
 echo "This scripts installs portainer and nginx-proxy-manager on ubuntu"
 echo ""
 echo "The installation will:"
 echo "1 - update your OS"
 echo "2 - create a non-root user"
-echo "3 - enalble OpenSSH for ufw firewall"
+echo "3 - enable OpenSSH for ufw firewall"
 
 echo ""
 
@@ -33,10 +40,23 @@ install() {
     echo ""
     echo "'$NEW_USER_USERNAME' got it..."
 
+    #check if user exists
+    if id -u "$1" >~/$LOG_FILE 2>&1; then
+        echo "$NEW_USER_USERNAME already user exists"
+        exit 1
+    else
+        echo "Great! This username is available"
+    fi
+
     sleep 1s
     echo ""
 
+    echo "creating user: $NEW_USER_USERNAME..."
+
     adduser $NEW_USER_USERNAME
+
+    sleep 1s
+    echo ""
 
     sleep 2s
     echo ""
@@ -77,7 +97,7 @@ install() {
     echo "Log file: ~/$LOG_FILE"
 }
 
-read -rp "Would like to continue the installations? (yes/no): " PURSUE_INSTALLATIONS
+read -rp "Would you like to continue the installations? (yes/no): " PURSUE_INSTALLATIONS
 
 case $PURSUE_INSTALLATIONS in
 yes) install ;;
