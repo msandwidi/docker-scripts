@@ -1,0 +1,27 @@
+version: "3.1"
+
+services:
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    networks: 
+      - db
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_PASSWORD}
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    networks:
+      - nginx-proxy
+      - db
+    ports:
+      - 8080:8080
+networks:
+  nginx-proxy:
+    name: nginx-proxy
+    external: true
+  db:
+    name: db
+    external: true
