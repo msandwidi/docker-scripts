@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  jupyter-spark:
+    image: jupyter/scipy-notebook
+    container_name: jupyter-spark
+    ports:
+      - 9988:8888
+    volumes:
+      - "/root/spark-jupyter/data:/home/jovyan/work:rw"
+    networks:
+      - nginx-proxy
+      - spark
+      
+networks:
+  nginx-proxy:
+    name: nginx-proxy
+    external: true
+  spark:
+    name: spark
+    external: true
